@@ -1,7 +1,7 @@
 FROM odoo:{{cookiecutter.odoo_version}}
 LABEL maintainer={{cookiecutter.git_email}}
 
-# Switch to super user to perform privileged operatiosn
+# Switch to super user to perform privileged operations
 USER root
 
 # Change this value to regenerate the whole image
