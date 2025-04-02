@@ -3,7 +3,6 @@
 # This software is released under the terms of the WTFPL (http://www.wtfpl.net/txt/copying/).
 
 import os
-import subprocess
 import sys
 
 from git import Repo, db
