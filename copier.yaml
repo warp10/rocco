@@ -1,0 +1,103 @@
+_subdirectory: src
+_min_copier_version: "9.0.0"
+
+git_name:
+  type: str
+  default: "Andrea Colangelo"
+  help: "Git user full name"
+
+git_email:
+  type: str
+  default: "andrea.colangelo@rapsodoo.com"
+  help: "Git user email"
+
+project_name:
+  type: str
+  default: "My ROCCO Project"
+  help: "Human readable project name"
+
+project_code:
+  type: str
+  default: "{{ project_name | lower | replace(' ', '-') }}"
+  help: "Machine-friendly project code"
+
+odoo_version:
+  type: str
+  choices:
+    - "14.0"
+    - "15.0"
+    - "16.0"
+    - "17.0"
+    - "18.0"
+    - "19.0"
+  help: "Target Odoo version"
+
+admin_password:
+  type: str
+  help: "Odoo admin password"
+  default: "admin1234"
+
+include_enterprise:
+  type: bool
+  default: false
+  help: "Include Odoo Enterprise addons"
+
+vcs:
+  type: str
+  choices:
+    - github
+    - azure
+  help: "Version control system"
+
+addons_repo_branch:
+  type: str
+  default: "{{ odoo_version }}"
+  help: "Branch used for addons repositories"
+
+# -------------------------
+# GitHub-only variables
+# -------------------------
+
+github_addons_repo_name:
+  type: str
+  default: "{{ project_code }}_addons"
+  when: "{{ vcs == 'github' }}"
+  help: "GitHub addons repository name (e.g. myproject_addons)"
+
+github_addons_repo_user:
+  type: str
+  when: "{{ vcs == 'github' }}"
+  help: "GitHub organization or user"
+
+github_token:
+  type: str
+  when: "{{ vcs == 'github' or include_enterprise }}"
+  secret: true
+  help: "GitHub token (https://github.com/settings/tokens)"
+  default: ""
+
+# -------------------------
+# Azure-only variables
+# -------------------------
+
+azure_addons_repo_organization:
+  type: str
+  when: "{{ vcs == 'azure' }}"
+  help: "Azure DevOps organization name"
+
+azure_addons_repo_project:
+  type: str
+  when: "{{ vcs == 'azure' }}"
+  help: "Azure DevOps project name"
+
+azure_addons_repo_name:
+  type: str
+  when: "{{ vcs == 'azure' }}"
+  help: "Azure DevOps repository name"
+
+azure_token:
+  type: str
+  when: "{{ vcs == 'azure' }}"
+  secret: true
+  help: "Azure DevOps token (https://dev.azure.com/{{ azure_addons_repo_organization }}/_usersSettings/tokens)"
+  default: ""
