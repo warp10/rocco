@@ -7,8 +7,8 @@ volumes:
 services:
   odoo:
       build: .
-      image: {{cookiecutter.project_code}}/odoo-docker-image:{{cookiecutter.odoo_version}}
-      container_name: {{cookiecutter.project_code}}_odoo
+      image: {{project_code}}/odoo-docker-image:{{odoo_version}}
+      container_name: {{project_code}}_odoo
       ports:
         - "8069:8069"
         - "8072:8072"
@@ -17,11 +17,11 @@ services:
       volumes:
         - "./etc:/rocco/etc"
         - "odoodata:/var/odoo"
-        # - "./{{cookiecutter.github_addons_repo_name}}:/parts/project_addons"
+        # - "./YOUR_REPO:/parts/project_addons"
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name:  {{cookiecutter.project_code}}_pg_admin
+    container_name:  {{project_code}}_pg_admin
     restart: always
     entrypoint: >
       /bin/sh -c "
@@ -45,8 +45,8 @@ services:
       - PGADMIN_CONFIG_SERVER_MODE=False
 
   db:
-    image: postgres:{{"14.5" if cookiecutter.odoo_version == "16.0" else "13.4"}}
-    container_name: {{cookiecutter.project_code}}_postgres
+    image: postgres:{{"14.5" if odoo_version == "16.0" else "13.4"}}
+    container_name: {{project_code}}_postgres
     ports:
       - "127.0.0.1:5432:5432"
     volumes:

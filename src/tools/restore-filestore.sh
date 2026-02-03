@@ -2,12 +2,12 @@
 
 # File name: restore-filestore.sh
 # ############################################################################
-# Description:  Copy target filestore to a docker contaniner. 
+# Description:  Copy target filestore to a docker contaniner.
 #
 # ----------------------------------------------------------------------------
 # Rapsodoo Italia srl
 # ############################################################################
-# shellcheck disable=SC1083 #Disable this check because script has cookiecutter template parts.
+# shellcheck disable=SC1083 #Disable this check because script has copier template parts.
 
 show_usage(){
     echo ""

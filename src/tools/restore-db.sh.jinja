@@ -7,7 +7,7 @@
 # ----------------------------------------------------------------------------
 # Rapsodoo Italia srl
 # ############################################################################
-# shellcheck disable=SC1083 #Disable this check because script has cookiecutter template parts.
+# shellcheck disable=SC1083 #Disable this check because script has copier template parts.
 
 show_usage(){
     echo ""
@@ -51,11 +51,11 @@ fi
 echo "Restoring database $dbname from $dbfile"
 # Move files
 echo "Moving $dbfile to docker image"
-docker cp "$dbfile" {{cookiecutter.project_code}}_postgres:"/tmp/${dbname}.sql"
+docker cp "$dbfile" {{project_code}}_postgres:"/tmp/${dbname}.sql"
 # Restore database
 echo "Creating and restoring database $dbname"
-docker exec {{cookiecutter.project_code}}_postgres createdb -U odoo "$dbname"
-docker exec --workdir /tmp {{cookiecutter.project_code}}_postgres psql -U odoo -d "$dbname" -f "${dbname}.sql"
-docker exec --workdir /tmp {{cookiecutter.project_code}}_postgres rm "${dbname}.sql"
+docker exec {{project_code}}_postgres createdb -U odoo "$dbname"
+docker exec --workdir /tmp {{project_code}}_postgres psql -U odoo -d "$dbname" -f "${dbname}.sql"
+docker exec --workdir /tmp {{project_code}}_postgres rm "${dbname}.sql"
 
 exit 0

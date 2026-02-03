@@ -1,4 +1,4 @@
-# ROCCO: the Rapsodoo Original CookieCutter for Odoo
+# ROCCO: the Rapsodoo Original Custom Copier for Odoo
 ## A long and durable piece of software
 
 ROCCO is your swiss-army knife to build Docker Environments for Odoo. It has been designed to replicate odoo.sh projects locally by just providing a valid GitHub Token and the main GitHub repo. Once ROCCO has done all of its magic, you can `docker-compose up` a perfect replica of your odoo.sh project, submodules included. It can also be used the other way around, that is: to build a Docker Environments with an addons repo that will eventually build an odoo.sh project.
@@ -7,21 +7,19 @@ ROCCO is based on the standard [Odoo Docker images](https://hub.docker.com/_/odo
 
 ## Usage
 
-Install [cookiecutter](http://cookiecutter.readthedocs.io/):
+Install [copier](https://copier.readthedocs.io/en/stable/):
 ```bash
-python3 -m pip install cookiecutter
+pipx install copier
 ```
 
-Then run cookicutter passing it the directory containing this template
+Then run copier passing it the directory containing this template
 ```bash
-python3 -m cookiecutter .
-```
-or run
-```bash
-cookiecutter gh:saydigital/rocco
+copier copy gh:saydigital/rocco YOUR_PROJECT_NAME
 ```
 
-You will be asked a few parameters, including the name and organization for both the addons repo and the docker-env repo. Then, the actual docker-env folder will be available for you. It will be automatically linked to the project addons repo you entered.
+You will be asked a few parameters, including the name and organization for the addons repo. Then, the actual docker-env folder will be available for you. It will be automatically linked to the project addons repo you entered.
+
+It's support GitHub and Azure DevOps repos.
 
 ## Tools
 
